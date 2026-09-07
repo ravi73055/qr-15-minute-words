@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Word Challenge 5</title>
+<style>
+*{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+body{margin:0;background:#f3f3f3;font-family:Arial,sans-serif;color:#171717;min-height:100vh;padding:18px 12px}
+.card{max-width:650px;margin:auto;background:#fff;border-radius:18px;padding:22px;box-shadow:0 5px 25px #0002}
+h1{text-align:center;margin:0 0 5px;font-size:30px} .sub{text-align:center;color:#666;margin-bottom:12px}
+.timer{text-align:center;font-size:48px;font-weight:800;margin:8px 0 18px;font-variant-numeric:tabular-nums}
+.row{display:flex;gap:16px;padding:11px 5px;border-bottom:1px solid #ddd;font-size:19px} .sno{width:35px;font-weight:700}
+#expired{display:none;text-align:center;padding:60px 5px;font-size:26px;font-weight:700}
+#protected{display:none;position:fixed;inset:0;background:#111;color:#fff;z-index:99;align-items:center;justify-content:center;text-align:center;padding:30px;font-size:24px}
+.note{text-align:center;color:#777;font-size:12px;margin-top:16px}
+</style></head><body>
+<div id="protected">Screen hidden.<br><small style="font-size:15px">Return to the page to continue.</small></div>
+<div class="card" id="main"><h1>Word Challenge 5</h1><div class="sub">30 general words • 60 seconds</div>
+<div class="timer" id="timer">01:00</div><div id="words"><div class="row"><span class="sno">1.</span><span>Doctor</span></div><div class="row"><span class="sno">2.</span><span>Nurse</span></div><div class="row"><span class="sno">3.</span><span>Hospital</span></div><div class="row"><span class="sno">4.</span><span>Medicine</span></div><div class="row"><span class="sno">5.</span><span>Health</span></div><div class="row"><span class="sno">6.</span><span>Exercise</span></div><div class="row"><span class="sno">7.</span><span>Food</span></div><div class="row"><span class="sno">8.</span><span>Water</span></div><div class="row"><span class="sno">9.</span><span>Sleep</span></div><div class="row"><span class="sno">10.</span><span>Morning</span></div><div class="row"><span class="sno">11.</span><span>Market</span></div><div class="row"><span class="sno">12.</span><span>Shop</span></div><div class="row"><span class="sno">13.</span><span>Office</span></div><div class="row"><span class="sno">14.</span><span>Factory</span></div><div class="row"><span class="sno">15.</span><span>Farmer</span></div><div class="row"><span class="sno">16.</span><span>Engineer</span></div><div class="row"><span class="sno">17.</span><span>Artist</span></div><div class="row"><span class="sno">18.</span><span>Driver</span></div><div class="row"><span class="sno">19.</span><span>Police</span></div><div class="row"><span class="sno">20.</span><span>Library</span></div><div class="row"><span class="sno">21.</span><span>Airport</span></div><div class="row"><span class="sno">22.</span><span>Station</span></div><div class="row"><span class="sno">23.</span><span>Train</span></div><div class="row"><span class="sno">24.</span><span>Bus</span></div><div class="row"><span class="sno">25.</span><span>Car</span></div><div class="row"><span class="sno">26.</span><span>Bicycle</span></div><div class="row"><span class="sno">27.</span><span>Travel</span></div><div class="row"><span class="sno">28.</span><span>Holiday</span></div><div class="row"><span class="sno">29.</span><span>Festival</span></div><div class="row"><span class="sno">30.</span><span>Country</span></div></div>
+<div id="expired">⏰ Time Expired<br><small style="font-size:15px;font-weight:normal">The words are no longer available.</small></div>
+<div class="note">60-second timer starts when this page opens.</div></div>
+<script>
+const END=Date.now()+60000,timer=document.getElementById('timer'),words=document.getElementById('words'),expired=document.getElementById('expired'),box=document.getElementById('protected');
+function expire(){timer.textContent='00:00';words.style.display='none';expired.style.display='block';}
+function tick(){let r=END-Date.now();if(r<=0){expire();return}let s=Math.ceil(r/1000);timer.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');setTimeout(tick,200)} tick();
+document.addEventListener('contextmenu',e=>e.preventDefault());document.addEventListener('selectstart',e=>e.preventDefault());document.addEventListener('copy',e=>e.preventDefault());
+function conceal(){if(Date.now()<END){document.getElementById('main').style.visibility='hidden';box.style.display='flex'}}
+function reveal(){document.getElementById('main').style.visibility='visible';box.style.display='none'}
+document.addEventListener('visibilitychange',()=>document.hidden?conceal():reveal());window.addEventListener('blur',conceal);window.addEventListener('focus',reveal);
+</script></body></html>
